@@ -63,19 +63,7 @@ def start_command_handler(update, context):
     add_typing(update, context)
     chat_id  =  update . message . chat . id
     if  chat_id  in  sessions :
-        if  sessions [ chat_id ] [ 'is_started' ]:
-            update . message . reply_text ( 'Oops,you could only give quiz once. \n In case of technical issue contact dev ' )
-        else :
-            if  len ( sessions [ chat_id ] [ 'participants' ]) >  1 :
-                sessions [ chat_id ] [ 'is_started' ] =  True
-                sessions [ chat_id ] [ 'can_request' ] =  True
-                update . message . reply_text (
-                    'Type 👉 / next for next question' )
-                next_ques(update,context)
-            else :
-                update . message . reply_text (
-                    'At least two participants are required, Type \ n \ n 👉 / I participate to take part in the quiz' )
-
+        update . message . reply_text ( 'Oops,you could only give quiz once. \n In case of technical issue contact dev ' )
     else :
         sessions [ chat_id ] = { 'participants' : {}, 'usernames' : {},'count' : 1,
                              'is_started' : True , 'can_request' : False }
